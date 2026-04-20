@@ -1,0 +1,7 @@
+{
+  "Batch download attachments": "Batch download attachments",
+  "Please select records to download": "Please select records to download",
+  "Successfully downloaded attachments for {{count}} records": "Successfully downloaded attachments for {{count}} records",
+  "Batch download failed, please try again": "Batch download failed, please try again",
+  "Request failed": "Request failed"
+}

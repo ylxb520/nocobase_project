@@ -1,0 +1,1 @@
+{"version":3,"file":"mariadb-dialect.d.ts","sourceRoot":"","sources":["mariadb-dialect.ts"],"names":[],"mappings":"AAAA;;;;;;;GAOG;AAEH,OAAO,EAAE,eAAe,EAAE,MAAM,aAAa,CAAC;AAC9C,OAAO,EAAE,WAAW,EAAE,MAAM,gBAAgB,CAAC;AAE7C,qBAAa,cAAe,SAAQ,WAAW;IAC7C,MAAM,CAAC,WAAW,SAAa;IAE/B,mBAAmB,CAAC,OAAO,EAAE,eAAe;IAU5C,eAAe;;iBAGF,MAAM;;;CAOpB"}

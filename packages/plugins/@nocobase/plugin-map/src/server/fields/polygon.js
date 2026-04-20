@@ -1,0 +1,59 @@
+/**
+ * This file is part of the NocoBase (R) project.
+ * Copyright (c) 2020-2024 NocoBase Co., Ltd.
+ * Authors: NocoBase Team.
+ *
+ * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * For more information, please refer to: https://www.nocobase.com/agreement.
+ */
+import { DataTypes, Field } from '@nocobase/database';
+import { isMysql, isPg, joinComma, toValue } from '../helpers';
+class Polygon extends DataTypes.ABSTRACT {
+    key = 'Polygon';
+}
+export class PolygonField extends Field {
+    constructor(options, context) {
+        const { name } = options;
+        super({
+            get() {
+                const value = this.getDataValue(name);
+                if (isPg(context)) {
+                    return toValue(value);
+                }
+                else if (isMysql(context)) {
+                    return value?.coordinates[0].slice(0, -1) || null;
+                }
+                else {
+                    return value;
+                }
+            },
+            set(value) {
+                if (!value?.length)
+                    value = null;
+                else if (isPg(context)) {
+                    value = joinComma(value.map((item) => joinComma(item)));
+                }
+                else if (isMysql(context)) {
+                    value = {
+                        type: 'Polygon',
+                        coordinates: [value.concat([value[0]])],
+                    };
+                }
+                this.setDataValue(name, value);
+            },
+            ...options,
+        }, context);
+    }
+    get dataType() {
+        if (isPg(this.context)) {
+            return Polygon;
+        }
+        else if (isMysql(this.context)) {
+            return DataTypes.GEOMETRY('POLYGON');
+        }
+        else {
+            return DataTypes.JSON;
+        }
+    }
+}
+//# sourceMappingURL=polygon.js.map

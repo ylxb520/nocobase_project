@@ -1,0 +1,1 @@
+{"version":3,"file":"collection-importer.d.ts","sourceRoot":"","sources":["collection-importer.ts"],"names":[],"mappings":"AAAA;;;;;;;GAOG;AAQH,MAAM,MAAM,mBAAmB,GAAG,IAAI,GAAG,IAAI,GAAG,MAAM,CAAC;AAEvD,qBAAa,cAAc;IACzB,SAAS,EAAE,MAAM,CAAC;IAClB,UAAU,EAAE,GAAG,CAAC,MAAM,CAAC,CAAC;gBAEZ,SAAS,EAAE,MAAM,EAAE,UAAU,CAAC,EAAE,mBAAmB,EAAE;IAU3D,IAAI;CAwBX"}

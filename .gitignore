@@ -14,7 +14,6 @@ lerna-debug.log
 coverage
 .umi
 .umi-production
-/uploads
 .env.test
 .env.perf
 docs-dist/
@@ -42,3 +41,4 @@ python/
 git-repos.json
 CLAUDE.md
 AGENTS.md
+.worktrees/

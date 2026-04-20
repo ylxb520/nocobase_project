@@ -1,0 +1,1 @@
+{"version":3,"file":"ipc-socket-server.d.ts","sourceRoot":"","sources":["ipc-socket-server.ts"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAIH,OAAO,GAAG,MAAM,KAAK,CAAC;AAMtB,qBAAa,eAAe;IAC1B,YAAY,EAAE,GAAG,CAAC,MAAM,CAAC;gBAEb,MAAM,EAAE,GAAG,CAAC,MAAM;IAI9B,MAAM,CAAC,WAAW,CAAC,UAAU,EAAE,MAAM;WA2DxB,mBAAmB,CAAC,EAAE,KAAK,EAAE,IAAI,EAAE,OAAO,EAAE;;;;KAAA;IAiDzD,KAAK;CAGN"}

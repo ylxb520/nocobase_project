@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":"AAAA,MAAM,UAAU,MAAM,CAAC,KAAK;IAC1B,MAAM,IAAI,GAAG,IAAI,IAAI,CAAC,KAAK,CAAC,CAAC;IAC7B,OAAO,IAAI,CAAC,QAAQ,EAAE,KAAK,cAAc,CAAC;AAC5C,CAAC","sourcesContent":["export function isDate(value) {\r\n  const date = new Date(value);\r\n  return date.toString() !== 'Invalid Date';\r\n}\r\n"]}

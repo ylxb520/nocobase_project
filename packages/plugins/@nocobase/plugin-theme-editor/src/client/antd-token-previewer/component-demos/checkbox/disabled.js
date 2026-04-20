@@ -1,0 +1,18 @@
+/**
+ * This file is part of the NocoBase (R) project.
+ * Copyright (c) 2020-2024 NocoBase Co., Ltd.
+ * Authors: NocoBase Team.
+ *
+ * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * For more information, please refer to: https://www.nocobase.com/agreement.
+ */
+import { Checkbox } from 'antd';
+import React from 'react';
+const Demo = () => React.createElement(Checkbox, { disabled: true }, "Checkbox");
+const componentDemo = {
+    demo: React.createElement(Demo, null),
+    tokens: ['colorTextDisabled', 'colorBgContainerDisabled'],
+    key: 'disabled',
+};
+export default componentDemo;
+//# sourceMappingURL=disabled.js.map

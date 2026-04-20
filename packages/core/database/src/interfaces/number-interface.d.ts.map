@@ -1,0 +1,1 @@
+{"version":3,"file":"number-interface.d.ts","sourceRoot":"","sources":["number-interface.ts"],"names":[],"mappings":"AAAA;;;;;;;GAOG;AAGH,OAAO,EAAE,aAAa,EAAE,MAAM,kBAAkB,CAAC;AAEjD,qBAAa,eAAgB,SAAQ,aAAa;IAChD,aAAa,CAAC,KAAK,EAAE,GAAG;IAclB,OAAO,CAAC,KAAK,EAAE,GAAG;IAmBxB,UAAU,CAAC,KAAK,KAAA;IAIhB,QAAQ,CAAC,KAAK,KAAA;IAId,QAAQ,CAAC,KAAK,EAAE,MAAM,EAAE,GAAG,CAAC,EAAE,GAAG;CAgBlC"}

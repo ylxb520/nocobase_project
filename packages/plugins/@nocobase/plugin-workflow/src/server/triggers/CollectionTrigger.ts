@@ -125,19 +125,40 @@ export default class CollectionTrigger extends Trigger {
       loadNeeded = true;
     }
     // NOTE: if no configured fields changed, do not trigger
+    // Modified: also check for association field changes (belongsToMany, hasMany, etc.)
     if (
       eventType === MODE_BITMAP_EVENTS.get(MODE_BITMAP.UPDATE) &&
       target instanceof Model &&
       changed &&
-      changed.length &&
-      changed
+      changed.length
+    ) {
+      // Check if any non-association field changed
+      const nonAssociationChanged = changed
         .filter((name) => {
           const field = collection.getField(name);
           return field && !['linkTo', 'hasOne', 'hasMany', 'belongsToMany'].includes(field.options.type);
         })
-        .every((name) => !(<Model>target).changedWithAssociations(getFieldRawName(collection, name)))
-    ) {
-      return null;
+        .some((name) => (<Model>target).changedWithAssociations(getFieldRawName(collection, name)));
+      
+      // Check if any association field changed
+      const associationChanged = changed
+        .filter((name) => {
+          const field = collection.getField(name);
+          return field && ['linkTo', 'hasOne', 'hasMany', 'belongsToMany'].includes(field.options.type);
+        })
+        .some((name) => {
+          // For association fields, check if the model has been modified
+          const field = collection.getField(name);
+          if (!field) return false;
+          // Check if this association was touched/modified
+          return (<Model>target).changedWithAssociations?.(name) || 
+                 (<any>target)._previousDataValues?.[name] !== undefined;
+        });
+      
+      // If nothing changed, skip triggering
+      if (!nonAssociationChanged && !associationChanged) {
+        return null;
+      }
     }
 
     // NOTE: if no configured condition, or not match, do not trigger

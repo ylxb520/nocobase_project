@@ -1,0 +1,1 @@
+{"version":3,"file":"playwright.config.js","sourceRoot":"","sources":["playwright.config.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,MAAM,oBAAoB,CAAC;AAElD,eAAe,YAAY,EAAE,CAAC","sourcesContent":["import { defineConfig } from '@nocobase/test/e2e';\r\n\r\nexport default defineConfig();\r\n"]}

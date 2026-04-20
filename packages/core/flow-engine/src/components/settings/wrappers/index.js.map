@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":"AAAA,wBAAwB;AACxB,cAAc,YAAY,CAAC;AAE3B,2BAA2B;AAC3B,cAAc,cAAc,CAAC","sourcesContent":["// 嵌入式wrapper组件 - 实时保存配置\r\nexport * from './embedded';\r\n\r\n// 上下文菜单wrapper组件 - 确认后保存配置\r\nexport * from './contextual';\r\n"]}

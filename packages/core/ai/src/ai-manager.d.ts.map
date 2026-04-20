@@ -1,0 +1,1 @@
+{"version":3,"file":"ai-manager.d.ts","sourceRoot":"","sources":["ai-manager.ts"],"names":[],"mappings":"AAAA;;;;;;;GAOG;AAEH,OAAO,EAAE,eAAe,EAAE,MAAM,oBAAoB,CAAC;AACrD,OAAO,EAAuB,YAAY,EAAE,MAAM,iBAAiB,CAAC;AAEpE,qBAAa,SAAS;IAIR,SAAS,CAAC,QAAQ,CAAC,GAAG,EAAE,GAAG;IAHvC,eAAe,EAAE,eAAe,CAAC;IACjC,YAAY,EAAE,YAAY,CAAC;gBAEI,GAAG,EAAE,GAAG;CAIxC"}

@@ -1,0 +1,44 @@
+/**
+ * This file is part of the NocoBase (R) project.
+ * Copyright (c) 2020-2024 NocoBase Co., Ltd.
+ * Authors: NocoBase Team.
+ *
+ * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * For more information, please refer to: https://www.nocobase.com/agreement.
+ */
+import { css } from '@nocobase/client';
+import { InputNumber, Select } from 'antd';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FieldsSelect } from '../../components/FieldsSelect';
+import { lang } from '../../locale';
+function dateFieldFilter(field) {
+    return !field.hidden && (field.uiSchema ? ['date', 'datetimeTz', 'datetimeNoTz'].includes(field.type) : false);
+}
+export function OnField({ value: propsValue, onChange }) {
+    const value = propsValue ?? {};
+    const { t } = useTranslation();
+    const [dir, setDir] = useState(value.offset ? value.offset / Math.abs(value.offset) : 0);
+    return (React.createElement("fieldset", { className: css `
+        display: flex;
+        gap: 0.5em;
+      ` },
+        React.createElement(FieldsSelect, { value: value.field, onChange: (field) => onChange({ ...value, field }), filter: dateFieldFilter, placeholder: t('Select field'), className: "auto-width" }),
+        value.field ? (React.createElement(Select, { value: dir, onChange: (v) => {
+                setDir(v);
+                onChange({ ...value, offset: Math.abs(value.offset) * v });
+            }, options: [
+                { value: 0, label: lang('Exactly at') },
+                { value: -1, label: t('Before') },
+                { value: 1, label: t('After') },
+            ], className: "auto-width" })) : null,
+        dir ? (React.createElement(React.Fragment, null,
+            React.createElement(InputNumber, { value: Math.abs(value.offset), onChange: (v) => onChange({ ...value, offset: (v ?? 0) * dir }) }),
+            React.createElement(Select, { value: value.unit || 86400000, onChange: (unit) => onChange({ ...value, unit }), options: [
+                    { value: 86400000, label: lang('Days') },
+                    { value: 3600000, label: lang('Hours') },
+                    { value: 60000, label: lang('Minutes') },
+                    { value: 1000, label: lang('Seconds') },
+                ], className: "auto-width" }))) : null));
+}
+//# sourceMappingURL=OnField.js.map

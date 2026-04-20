@@ -1,0 +1,55 @@
+declare const _default: {
+    data: ({
+        id: number;
+        createdAt: string;
+        updatedAt: string;
+        createdById: number;
+        updatedById: number;
+        f_1ckuegfab9s: any;
+        f_a4z4h45vi5b: string;
+        f_cht6rsiiiko: string;
+        f_d93g4r08krl: string;
+        f_f7txg1oc3nt: string;
+        f_g8j5jvalqh0: string;
+        f_hpmvdltzs6m: any;
+        f_tegyd222bcc: string;
+        f_yc8jbfiqfvh: string;
+        f_z27302tl2bf: string;
+        f_zek99qhv0vc: string;
+    } | {
+        id: number;
+        createdAt: string;
+        updatedAt: string;
+        createdById: number;
+        updatedById: number;
+        f_1ckuegfab9s: any;
+        f_a4z4h45vi5b: string;
+        f_cht6rsiiiko: string;
+        f_d93g4r08krl: string;
+        f_f7txg1oc3nt: string;
+        f_g8j5jvalqh0: string;
+        f_hpmvdltzs6m: string;
+        f_tegyd222bcc: any;
+        f_yc8jbfiqfvh: string;
+        f_z27302tl2bf: string;
+        f_zek99qhv0vc: string;
+    } | {
+        id: number;
+        createdAt: string;
+        updatedAt: string;
+        createdById: number;
+        updatedById: number;
+        f_1ckuegfab9s: any;
+        f_a4z4h45vi5b: any;
+        f_cht6rsiiiko: any;
+        f_d93g4r08krl: any;
+        f_f7txg1oc3nt: string;
+        f_g8j5jvalqh0: string;
+        f_hpmvdltzs6m: string;
+        f_tegyd222bcc: string;
+        f_yc8jbfiqfvh: string;
+        f_z27302tl2bf: string;
+        f_zek99qhv0vc: string;
+    })[];
+};
+export default _default;

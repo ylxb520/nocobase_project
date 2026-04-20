@@ -1,0 +1,129 @@
+import { observer, useField, useFieldSchema } from '@formily/react';
+import {
+  Application,
+  Plugin,
+  SchemaComponent,
+  SchemaInitializer,
+  SchemaInitializerChild,
+  SchemaInitializerItem,
+  useSchemaInitializer,
+  useSchemaInitializerItem,
+  useSchemaInitializerRender,
+} from '@nocobase/client';
+import { List } from 'antd';
+import React from 'react';
+const Hello = observer(() => {
+  const field = useField();
+  return React.createElement(
+    'div',
+    { style: { marginBottom: 20, padding: '0 20px', height: 50, lineHeight: '50px', background: '#f1f1f1' } },
+    field.title,
+  );
+});
+function Demo() {
+  const itemConfig = useSchemaInitializerItem();
+  // 调用插入功能
+  const { insert } = useSchemaInitializer();
+  const handleClick = () => {
+    insert({
+      type: 'void',
+      title: itemConfig.title,
+      'x-component': 'Hello',
+    });
+  };
+  return React.createElement(SchemaInitializerItem, { title: itemConfig.title, onClick: handleClick });
+}
+const CustomListGridMenu = (props) => {
+  const { items, options, ...others } = props;
+  return React.createElement(List, {
+    ...others,
+    style: { marginTop: 20 },
+    dataSource: items,
+    grid: { gutter: 16, column: 2 },
+    renderItem: (item) =>
+      React.createElement(
+        List.Item,
+        { style: { minWidth: 100, textAlign: 'center' } },
+        React.createElement(SchemaInitializerChild, { ...item }),
+      ),
+  });
+};
+const myInitializer = new SchemaInitializer({
+  name: 'myInitializer',
+  title: 'Add Block',
+  // 插入位置
+  insertPosition: 'beforeEnd',
+  ItemsComponent: CustomListGridMenu,
+  items: [
+    {
+      name: 'a',
+      title: 'Item A',
+      Component: Demo,
+    },
+    {
+      name: 'b',
+      title: 'Item B',
+      Component: Demo,
+    },
+  ],
+});
+const AddBlockButton = observer(
+  () => {
+    const fieldSchema = useFieldSchema();
+    const { render } = useSchemaInitializerRender(fieldSchema['x-initializer']);
+    return render();
+  },
+  { displayName: 'AddBlockButton' },
+);
+const Page = observer(
+  (props) => {
+    return React.createElement('div', null, props.children, React.createElement(AddBlockButton, null));
+  },
+  { displayName: 'Page' },
+);
+const Root = () => {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement(SchemaComponent, {
+      components: { Page, Hello, AddBlockButton },
+      schema: {
+        type: 'void',
+        name: 'page',
+        'x-component': 'Page',
+        'x-initializer': 'myInitializer',
+        properties: {
+          hello1: {
+            type: 'void',
+            title: 'Test1',
+            'x-component': 'Hello',
+          },
+          hello2: {
+            type: 'void',
+            title: 'Test2',
+            'x-component': 'Hello',
+          },
+        },
+      },
+    }),
+  );
+};
+class MyPlugin extends Plugin {
+  async load() {
+    this.app.schemaInitializerManager.add(myInitializer);
+    this.app.router.add('root', {
+      path: '/',
+      Component: Root,
+    });
+  }
+}
+const app = new Application({
+  router: {
+    type: 'memory',
+    initialEntries: ['/'],
+  },
+  plugins: [MyPlugin],
+  designable: true,
+});
+export default app.getRootComponent();
+//# sourceMappingURL=schema-initializer-items.js.map

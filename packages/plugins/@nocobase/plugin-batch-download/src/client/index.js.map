@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["index.tsx"],"names":[],"mappings":"AAAA,OAAO,yBAAyB,MAAM,UAAU,CAAC;AACjD,eAAe,yBAAyB,CAAC","sourcesContent":["import PluginBatchDownloadClient from './plugin';\nexport default PluginBatchDownloadClient;\n"]}

@@ -1,0 +1,137 @@
+/**
+ * defaultShowCode: true
+ * title: 错误回退 - 表格列（RenderFunction）
+ */
+import {
+  Application,
+  CollectionActionModel,
+  FilterManager,
+  Plugin,
+  DisplayTextFieldModel,
+  RecordActionModel,
+  TableActionsColumnModel,
+  TableBlockModel,
+  TableColumnModel,
+} from '@nocobase/client';
+import { FlowEngineProvider, FlowModelProvider, FlowModelRenderer } from '@nocobase/flow-engine';
+import { Card } from 'antd';
+import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { api } from './api';
+// 自定义列：在单元格渲染函数中抛出异常，并用局部 ErrorBoundary 兜底，保留表格/列设置外壳
+class ThrowTableColumnModel extends TableColumnModel {
+  // 极简回退组件：仅提示 Error，保留列设置外壳
+  MinimalCellErrorFallback = () =>
+    React.createElement(
+      'span',
+      { title: this.translate?.('Column error') || 'Column error', style: { color: '#fa541c' } },
+      this.translate?.('Error') || 'Error',
+    );
+  // 在 ErrorBoundary 包裹的子组件中抛错，确保被边界捕获
+  ThrowingCell = () => {
+    throw new Error('Demo: 列单元格渲染失败（RenderFunction）');
+  };
+  render() {
+    return () => {
+      return React.createElement(
+        FlowModelProvider,
+        { model: this },
+        React.createElement(
+          ErrorBoundary,
+          { FallbackComponent: this.MinimalCellErrorFallback },
+          React.createElement(this.ThrowingCell, null),
+        ),
+      );
+    };
+  }
+}
+class DemoPlugin extends Plugin {
+  table;
+  async load() {
+    // 强制显示设置入口
+    this.flowEngine.flowSettings.forceEnable();
+    // 提供 mock API，避免实际网络请求
+    this.flowEngine.context.defineProperty('api', { value: api });
+    // 简单数据源/集合
+    const dsm = this.flowEngine.context.dataSourceManager;
+    dsm.getDataSource('main') || dsm.addDataSource({ key: 'main', displayName: 'Main' });
+    dsm.getDataSource('main').addCollection({
+      name: 'users',
+      title: 'Users',
+      filterTargetKey: 'id',
+      fields: [
+        { name: 'id', type: 'bigInt', title: 'ID' },
+        { name: 'username', type: 'string', title: 'Username' },
+      ],
+    });
+    // 注册所需模型 + 自定义抛错列模型
+    this.flowEngine.registerModels({
+      TableBlockModel,
+      TableColumnModel,
+      TableActionsColumnModel,
+      CollectionActionModel,
+      RecordActionModel,
+      DisplayTextFieldModel,
+      ThrowTableColumnModel,
+    });
+    // 创建 TableBlockModel：包含一个正常字段列和一个抛错列
+    this.table = this.flowEngine.createModel({
+      use: 'TableBlockModel',
+      stepParams: { resourceSettings: { init: { dataSourceKey: 'main', collectionName: 'users' } } },
+      subModels: {
+        columns: [
+          {
+            use: 'TableColumnModel',
+            stepParams: {
+              fieldSettings: { init: { dataSourceKey: 'main', collectionName: 'users', fieldPath: 'username' } },
+            },
+            subModels: {
+              field: {
+                use: 'DisplayTextFieldModel',
+                stepParams: {
+                  fieldSettings: { init: { dataSourceKey: 'main', collectionName: 'users', fieldPath: 'username' } },
+                },
+              },
+            },
+          },
+          {
+            use: 'ThrowTableColumnModel',
+            stepParams: {
+              // 列标题
+              tableColumnSettings: {
+                init: {},
+              },
+            },
+          },
+        ],
+      },
+    });
+    // 提供 filterManager，避免刷新流程绑定时报错
+    this.table.context.defineProperty('filterManager', { value: new FilterManager(this.table) });
+    this.router.add('root', {
+      path: '/',
+      element: React.createElement(
+        FlowEngineProvider,
+        { engine: this.flowEngine },
+        React.createElement(
+          'div',
+          { style: { padding: 16 } },
+          React.createElement(
+            Card,
+            { title: '\u8868\u683C\u5217\uFF08RenderFunction\uFF09\u629B\u9519\u6F14\u793A' },
+            React.createElement(FlowModelRenderer, {
+              model: this.table,
+              showFlowSettings: true,
+              showErrorFallback: true,
+            }),
+          ),
+        ),
+      ),
+    });
+  }
+}
+export default new Application({
+  router: { type: 'memory', initialEntries: ['/'] },
+  plugins: [DemoPlugin],
+}).getRootComponent();
+//# sourceMappingURL=table-column-error.js.map

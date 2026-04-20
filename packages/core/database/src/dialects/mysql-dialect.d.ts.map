@@ -1,0 +1,1 @@
+{"version":3,"file":"mysql-dialect.d.ts","sourceRoot":"","sources":["mysql-dialect.ts"],"names":[],"mappings":"AAAA;;;;;;;GAOG;AAGH,OAAO,EAAE,WAAW,EAAE,MAAM,gBAAgB,CAAC;AAC7C,OAAO,EAAE,eAAe,EAAE,MAAM,aAAa,CAAC;AAE9C,qBAAa,YAAa,SAAQ,WAAW;IAC3C,MAAM,CAAC,WAAW,SAAW;IAE7B,eAAe;;iBAGF,MAAM;;;IAQnB,mBAAmB,CAAC,OAAO,EAAE,eAAe;CAS7C"}

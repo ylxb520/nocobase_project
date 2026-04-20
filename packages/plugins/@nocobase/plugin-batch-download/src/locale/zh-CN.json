@@ -1,0 +1,7 @@
+{
+  "Batch download attachments": "批量下载附件",
+  "Please select records to download": "请先选择要下载附件的记录",
+  "Successfully downloaded attachments for {{count}} records": "成功下载 {{count}} 条记录的附件",
+  "Batch download failed, please try again": "批量下载失败，请重试",
+  "Request failed": "请求失败"
+}

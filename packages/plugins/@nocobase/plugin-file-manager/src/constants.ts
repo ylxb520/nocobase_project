@@ -8,7 +8,7 @@
  */
 
 export const FILE_FIELD_NAME = 'file';
-export const LIMIT_FILES = 1;
+export const LIMIT_FILES = 10;  // 修改为10个文件
 export const FILE_SIZE_LIMIT_MIN = 1;
 export const FILE_SIZE_LIMIT_MAX = Number.POSITIVE_INFINITY;
 export const FILE_SIZE_LIMIT_DEFAULT = 1024 * 1024 * 20;

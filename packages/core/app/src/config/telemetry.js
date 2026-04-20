@@ -1,0 +1,19 @@
+/**
+ * This file is part of the NocoBase (R) project.
+ * Copyright (c) 2020-2024 NocoBase Co., Ltd.
+ * Authors: NocoBase Team.
+ *
+ * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * For more information, please refer to: https://www.nocobase.com/agreement.
+ */
+export const telemetry = {
+  serviceName: process.env.TELEMETRY_SERVICE_NAME || 'nocobase',
+  enabled: process.env.TELEMETRY_ENABLED === 'on',
+  metric: {
+    readerName: process.env.TELEMETRY_METRIC_READER,
+  },
+  trace: {
+    processorName: process.env.TELEMETRY_TRACE_PROCESSOR,
+  },
+};
+//# sourceMappingURL=telemetry.js.map

@@ -1,0 +1,21 @@
+/**
+ * This file is part of the NocoBase (R) project.
+ * Copyright (c) 2020-2024 NocoBase Co., Ltd.
+ * Authors: NocoBase Team.
+ *
+ * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * For more information, please refer to: https://www.nocobase.com/agreement.
+ */
+export const isBeforeRenderFlow = (flow) => {
+  if (typeof flow.on === 'string') {
+    return flow.on === 'beforeRender';
+  }
+  if (typeof flow.on === 'object') {
+    return flow.on.eventName === 'beforeRender';
+  }
+  if (!flow.on && flow.manual !== true) {
+    return true;
+  }
+  return false;
+};
+//# sourceMappingURL=flows.js.map

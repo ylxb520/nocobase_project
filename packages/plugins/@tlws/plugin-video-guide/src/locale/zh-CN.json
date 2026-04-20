@@ -1,0 +1,14 @@
+{
+  "Video guide": "视频讲解",
+  "Video guide settings": "视频讲解配置",
+  "Video guide content": "视频内容",
+  "Configure video guide": "配置视频讲解",
+  "Button text": "按钮文本",
+  "Modal title": "弹窗标题",
+  "Video URL": "视频地址",
+  "Poster URL": "封面地址",
+  "Subtitle URL": "字幕地址",
+  "Subtitle label": "字幕名称",
+  "Chinese subtitles": "中文字幕",
+  "Optional WebVTT subtitle file URL.": "可选，填写 WebVTT 字幕文件地址。"
+}

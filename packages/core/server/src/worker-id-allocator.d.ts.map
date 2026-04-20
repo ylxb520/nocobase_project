@@ -1,0 +1,1 @@
+{"version":3,"file":"worker-id-allocator.d.ts","sourceRoot":"","sources":["worker-id-allocator.ts"],"names":[],"mappings":"AAAA;;;;;;;GAOG;AAEH,MAAM,WAAW,wBAAwB;IACvC,WAAW,IAAI,OAAO,CAAC,MAAM,CAAC,CAAC;IAC/B,OAAO,IAAI,OAAO,CAAC,IAAI,CAAC,CAAC;CAC1B;AAED,qBAAa,iBAAiB;IAC5B,OAAO,CAAC,OAAO,CAA2B;IAE1C,UAAU,CAAC,OAAO,EAAE,wBAAwB;IAItC,WAAW;IAOX,OAAO;CAMd"}

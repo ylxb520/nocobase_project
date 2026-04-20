@@ -1,0 +1,1 @@
+{"version":3,"file":"referential-integrity-check.d.ts","sourceRoot":"","sources":["referential-integrity-check.ts"],"names":[],"mappings":"AAAA;;;;;;;GAOG;AAEH,OAAO,EAAE,KAAK,EAAE,eAAe,EAAE,MAAM,WAAW,CAAC;AACnD,OAAO,QAAQ,MAAM,aAAa,CAAC;AAEnC,UAAU,gCAAiC,SAAQ,eAAe;IAChE,EAAE,EAAE,QAAQ,CAAC;IACb,kBAAkB,EAAE,KAAK,CAAC;CAC3B;AAED,wBAAsB,yBAAyB,CAAC,OAAO,EAAE,gCAAgC,iBA6DxF"}

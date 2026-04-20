@@ -1,0 +1,16 @@
+/**
+ * This file is part of the NocoBase (R) project.
+ * Copyright (c) 2020-2024 NocoBase Co., Ltd.
+ * Authors: NocoBase Team.
+ *
+ * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * For more information, please refer to: https://www.nocobase.com/agreement.
+ */
+import React from 'react';
+import { InterfaceRouter } from '../router';
+import { MobileDevice } from '../devices';
+export const InterfaceConfiguration = () => {
+    return (React.createElement(MobileDevice, null,
+        React.createElement(InterfaceRouter, null)));
+};
+//# sourceMappingURL=Interface.js.map

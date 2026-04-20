@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":"AAAA,cAAc,QAAQ,CAAC;AACvB,cAAc,YAAY,CAAC;AAC3B,cAAc,UAAU,CAAC;AACzB,cAAc,UAAU,CAAC;AACzB,SAAS","sourcesContent":["export * from './next';\r\nexport * from './previous';\r\nexport * from './submit';\r\nexport * from './custom';\r\n// others\r\n"]}

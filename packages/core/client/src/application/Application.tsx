@@ -477,7 +477,7 @@ export class Application {
       }
 
       if (data.type === 'notification') {
-        this.notification[data.payload?.type || 'info']({ message: data.payload?.message });
+        this.notification?.[data.payload?.type || 'info']?.({ message: data.payload?.message });
         return;
       }
 

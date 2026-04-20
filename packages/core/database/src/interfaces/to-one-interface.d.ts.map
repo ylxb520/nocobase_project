@@ -1,0 +1,1 @@
+{"version":3,"file":"to-one-interface.d.ts","sourceRoot":"","sources":["to-one-interface.ts"],"names":[],"mappings":"AAAA;;;;;;;GAOG;AAEH,OAAO,EAAE,aAAa,EAAE,MAAM,kBAAkB,CAAC;AAEjD,qBAAa,cAAe,SAAQ,aAAa;IAC/C,QAAQ,CAAC,KAAK,EAAE,GAAG,EAAE,GAAG,CAAC,EAAE,GAAG,GAAG,MAAM;IAIjC,OAAO,CAAC,GAAG,EAAE,MAAM,EAAE,GAAG,CAAC,EAAE,GAAG;CAsBrC"}

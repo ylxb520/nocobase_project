@@ -469,7 +469,10 @@ export class PluginDataSourceMainServer extends Plugin {
   }
 
   async load() {
-    this.db.getRepository<CollectionRepository>('collections').setApp(this.app);
+    const collectionRepository = this.db.getRepository<CollectionRepository>('collections');
+    if (collectionRepository) {
+      collectionRepository.setApp(this.app);
+    }
 
     this.registerErrorHandler();
 

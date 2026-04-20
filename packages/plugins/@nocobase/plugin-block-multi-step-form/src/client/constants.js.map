@@ -1,0 +1,1 @@
+{"version":3,"file":"constants.js","sourceRoot":"","sources":["constants.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,MAAM,aAAa,GAAG,WAAW,CAAC;AACzC,MAAM,CAAC,MAAM,aAAa,GAAG,WAAW,CAAC","sourcesContent":["export const ComponentType = 'StepsForm';\r\nexport const StepsFormName = 'stepsForm';\r\n"]}

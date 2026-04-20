@@ -1,0 +1,1 @@
+{"version":3,"file":"vitest.config.mjs","sourceRoot":"","sources":["vitest.config.mts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,MAAM,2BAA2B,CAAC;AAEzD,eAAe,YAAY,EAAE,CAAC","sourcesContent":["import { defineConfig } from '@nocobase/test/vitest.mjs';\r\n\r\nexport default defineConfig();\r\n"]}

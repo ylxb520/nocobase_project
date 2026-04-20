@@ -1,0 +1,19 @@
+/**
+ * This file is part of the NocoBase (R) project.
+ * Copyright (c) 2020-2024 NocoBase Co., Ltd.
+ * Authors: NocoBase Team.
+ *
+ * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * For more information, please refer to: https://www.nocobase.com/agreement.
+ */
+import { Registry } from '@nocobase/utils/client';
+export class VerificationManager {
+    verifications = new Registry();
+    registerVerificationType(type, options) {
+        this.verifications.register(type, options);
+    }
+    getVerification(type) {
+        return this.verifications.get(type);
+    }
+}
+//# sourceMappingURL=index.js.map

@@ -1,0 +1,25 @@
+{
+  "name": "@tlws/plugin-batch-download-attachments",
+  "version": "1.0.0",
+  "main": "dist/server/index.js",
+  "displayName": "Batch Download Attachments",
+  "displayName.zh-CN": "批量下载附件",
+  "description": "Add a batch download button to table blocks to download selected attachments.",
+  "description.zh-CN": "在表格区块添加批量下载按钮，下载选择的附件。",
+  "peerDependencies": {
+    "@nocobase/client": "1.x",
+    "@nocobase/server": "1.x",
+    "@nocobase/test": "1.x"
+  },
+  "keywords": [
+    "Batch",
+    "Download",
+    "Attachments",
+    "Table"
+  ],
+  "nocobase": {
+    "build": {
+      "dts": false
+    }
+  }
+}

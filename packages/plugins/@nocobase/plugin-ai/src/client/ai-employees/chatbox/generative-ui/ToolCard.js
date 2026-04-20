@@ -1,0 +1,102 @@
+/**
+ * This file is part of the NocoBase (R) project.
+ * Copyright (c) 2020-2024 NocoBase Co., Ltd.
+ * Authors: NocoBase Team.
+ *
+ * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * For more information, please refer to: https://www.nocobase.com/agreement.
+ */
+import React, { useEffect } from 'react';
+import { DefaultToolCard } from './DefaultToolCard';
+import { toToolsMap } from '@nocobase/client';
+import { jsonrepair } from 'jsonrepair';
+import { useToolCallActions } from '../hooks/useToolCallActions';
+import { useAIConfigRepository } from '../../../repositories/hooks/useAIConfigRepository';
+import { observer } from '@nocobase/flow-engine';
+export const ToolCard = observer(({ toolCalls, messageId, inlineActions }) => {
+  const aiConfigRepository = useAIConfigRepository();
+  const loading = aiConfigRepository.aiToolsLoading;
+  const tools = aiConfigRepository.aiTools;
+  const toolsMap = toToolsMap(tools);
+  const { getDecisionActions } = useToolCallActions({ messageId });
+  const toolsWithUI = [];
+  const toolsWithoutUI = [];
+  for (const t of toolCalls) {
+    const toolCall = { ...t };
+    if (typeof toolCall.args === 'string') {
+      const trimmed = toolCall.args.trim();
+      if (trimmed.length > 0) {
+        try {
+          const repaired = jsonrepair(trimmed);
+          toolCall.args = JSON.parse(repaired);
+        } catch (err) {
+          console.error(err, toolCall.args);
+          toolCall.args = {};
+        }
+      } else {
+        toolCall.args = {};
+      }
+    }
+    const toolEntry = toolsMap.get(toolCall.name);
+    const C = toolEntry?.ui?.card;
+    if (C) {
+      toolsWithUI.push({
+        C,
+        messageId,
+        tools: toolEntry,
+        toolCall,
+        decisions: getDecisionActions(toolCall),
+      });
+    } else {
+      toolsWithoutUI.push(toolCall);
+    }
+  }
+  useEffect(() => {
+    aiConfigRepository.getAITools();
+  }, [aiConfigRepository]);
+  useEffect(() => {
+    if (!messageId) {
+      return;
+    }
+    if (!toolCalls?.length) {
+      return;
+    }
+    const task = async () => {
+      for (const toolCall of toolCalls) {
+        if (toolCall.invokeStatus === 'interrupted' && toolCall.auto === true) {
+          const decision = getDecisionActions(toolCall);
+          await decision.approve();
+        }
+      }
+    };
+    task();
+  }, [messageId, toolCalls]);
+  return React.createElement(
+    React.Fragment,
+    null,
+    loading
+      ? React.createElement(React.Fragment, null)
+      : React.createElement(
+          React.Fragment,
+          null,
+          toolsWithoutUI.length > 0
+            ? React.createElement(DefaultToolCard, {
+                messageId: messageId,
+                tools: tools,
+                toolCalls: toolsWithoutUI,
+                inlineActions: toolsWithoutUI.length === 1 && toolsWithUI.length === 0 ? inlineActions : null,
+              })
+            : null,
+          toolsWithUI.map(({ C, messageId, tools, toolCall, decisions }, index) =>
+            React.createElement(C, {
+              key: index,
+              messageId: messageId,
+              tools: tools,
+              toolCall: toolCall,
+              decisions: decisions,
+            }),
+          ),
+        ),
+  );
+});
+//# sourceMappingURL=ToolCard.js.map

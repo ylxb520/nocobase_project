@@ -197,6 +197,9 @@ export class PluginEnvironmentVariablesServer extends Plugin {
 
   async loadVariables() {
     const repository = this.db.getRepository('environmentVariables');
+    if (!repository?.collection) {
+      return;
+    }
     const r = await repository.collection.existsInDb();
     if (!r) {
       return;

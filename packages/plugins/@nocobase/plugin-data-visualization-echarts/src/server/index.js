@@ -1,0 +1,2 @@
+export { default } from './plugin';
+//# sourceMappingURL=index.js.map

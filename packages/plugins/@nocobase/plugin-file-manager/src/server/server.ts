@@ -227,6 +227,9 @@ export class PluginFileManagerServer extends Plugin {
     this.storageTypes.register(STORAGE_TYPE_TX_COS, StorageTypeTxCos);
 
     const Storage = this.db.getModel('storages');
+    if (!Storage) {
+      return;
+    }
     Storage.afterSave(async (m, { transaction }) => {
       await this.loadStorages({ transaction });
       this.sendSyncMessage({ type: 'reloadStorages' }, { transaction });
